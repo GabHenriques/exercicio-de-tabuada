@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Tabuada</title>
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .grid-column {
+            display: flex;
+            flex-direction: column;
+            margin: 10px;
+        }
+
+        .grid-item {
+            margin: 5px
+        }
+    </style>
+</head>
+<body>
+    <h1>Exercício tabuada</h1>
+
+    <button onclick="mostrarTabuada()">Mostrar Tabuada</button>
+    <button onclick="limparTabuada()">Limpar tabuada</button>
+    <div id="output" class="grid-container"></div>
+
+    <script>
+
+        const output = document.getElementById("output")
+        
+        const numero = parseFloat ( prompt("Digite um número.") )
+        
+        function mostrarTabuada() {
+            
+            if (numero === null || isNaN(numero)) {
+                alert(`''${numero}'' não é válido`)
+                return
+            }
+
+            let msg = ""
+
+            for (let i = 1; i <=30; i++) {
+                const resultado = numero * i
+                msg += `<div class="grid-item">${numero} x ${i} = ${resultado}</div>`
+
+                    if(i % 10 === 0) {
+                        msg += "</div><div class='grid-column'>"
+                    }
+            }
+            msg += "</div>"
+
+            output.innerHTML = `<div class="grid-column">${msg}</div>`
+        }
+        
+        function limparTabuada() {
+            output.innerHTML = ""
+        }
+    </script>
+</body>
+</html>
